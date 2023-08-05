@@ -1,6 +1,4 @@
-"use client";
-
-import React, { useState } from "react";
+import { useState } from "react";
 
 const SearchSort = ({ onSearch, onSort }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -29,9 +27,12 @@ const SearchSort = ({ onSearch, onSort }) => {
       />
 
       {/* Section for sorting products. */}
-      <section className="sorting ml-4">
+      <section className="sorting flex  md:flex md:flex-col ml-4">
         {/* Label for the sorting dropdown. */}
-
+        {/* Label for the select dropdown */}
+        <label htmlFor="sort" className="block font-medium mb-2">
+          Sort by:
+        </label>
         {/* Select dropdown for sorting options. */}
         <select
           id="sort"

@@ -1,10 +1,8 @@
-
-'use client'
-import React, { useState, useEffect } from 'react';
-import SearchSort from './SearchSort';
-import FilterProducts from './FilterProducts';
-import StarRating from './StarRating';
-import Image from 'next/image';
+"use client";
+import { useState, useEffect } from "react";
+import SearchSort from "./SearchSort";
+import FilterProducts from "./FilterProducts";
+import StarRating from "./StarRating";
 
 const WatchList = () => {
   const [watches, setWatches] = useState([]);
@@ -17,12 +15,12 @@ const WatchList = () => {
 
   useEffect(() => {
     // Fetch the data from the watches.json file.
-    fetch('/watches.json')
+    fetch("/watches.json")
       .then((response) => response.json())
       .then((data) => {
         setWatches(data);
       })
-      .catch((error) => console.error('Error fetching watches:', error));
+      .catch((error) => console.error("Error fetching watches:", error));
   }, []);
 
   useEffect(() => {
@@ -53,16 +51,16 @@ const WatchList = () => {
     let sorted = [...watches];
 
     switch (sortOption) {
-      case 'az':
+      case "az":
         sorted.sort((a, b) => a.name.localeCompare(b.name));
         break;
-      case 'za':
+      case "za":
         sorted.sort((a, b) => b.name.localeCompare(a.name));
         break;
-      case 'price-asc':
+      case "price-asc":
         sorted.sort((a, b) => a.price - b.price);
         break;
-      case 'price-desc':
+      case "price-desc":
         sorted.sort((a, b) => b.price - a.price);
         break;
       default:
@@ -74,26 +72,24 @@ const WatchList = () => {
   };
 
   return (
-    <div className="container m-auto py-8">
+    <div className="container mx-auto py-8">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-
-      <div className="mt-20">
+        <div className="mt-20">
           <FilterProducts data={watches} onFilter={handleFilter} />
         </div>
         {/* Products Section */}
         <div className="md:col-span-3">
           {/* Search and Sort Section */}
           <SearchSort onSearch={handleSearch} onSort={handleSort} />
-        {/* Filters (conditionally rendered based on screen size) */}
-       
-              {/* Display the number of products shown */}
-      <div className="text-center m-4">
-        <h2 className="text-xl font-semibold mb-2">Watches</h2>
-        <p>{filteredWatches.length} Products</p>
-      </div>
+          {/* Filters (conditionally rendered based on screen size) */}
+
+          {/* Display the number of products shown */}
+          <div className="text-center m-4">
+            <h2 className="text-xl font-semibold mb-2">Watches</h2>
+            <p>{filteredWatches.length} Products</p>
+          </div>
           {/* Watches Grid */}
           <div className="grid grid-cols-2  lg:grid-cols-3 xl:grid-cols-5 gap-4 ">
-            
             {filteredWatches.map((watch) => (
               <div
                 key={watch.id}

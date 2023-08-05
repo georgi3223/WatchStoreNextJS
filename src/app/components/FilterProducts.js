@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 
 const FilterProducts = ({ data, onFilter }) => {
@@ -266,7 +266,7 @@ const FilterProducts = ({ data, onFilter }) => {
       {/* Desktop filter section on the left side for filtering products by various criteria. */}
      
         <section
-        className="filtering hidden  md:inline rounded-md border border-solid p-10 "
+        className="filtering hidden  md:inline rounded-md border border-solid p-10 shadow-md "
         // Use the hidden class for screens under 768px
       >
         {/* Heading for the filter section. */}

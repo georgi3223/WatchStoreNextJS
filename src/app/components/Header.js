@@ -1,20 +1,23 @@
-'use client'
-import React, { useState, useEffect, useRef } from 'react';
-import { MdMenu, MdClose, MdHome, MdCategory, MdSearch, MdPerson } from 'react-icons/md';
-import Link from 'next/link';
+"use client";
+import { useState, useEffect, useRef } from "react";
+import {
+  MdMenu,
+  MdClose,
+  MdHome,
+  MdCategory,
+  MdSearch,
+  MdPerson,
+} from "react-icons/md";
+import Link from "next/link";
 
 const Header = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigationRef = useRef(null);
-  const categoriesDropdownRef = useRef(null); // Add a new useRef for the categories dropdown
-  const [showCategoriesDropdown, setShowCategoriesDropdown] = useState(false); // Add the state variable
+  const categoriesDropdownRef = useRef(null);
+  const [showCategoriesDropdown, setShowCategoriesDropdown] = useState(false);
   const handleCategoriesDropdownClick = () => {
     setShowCategoriesDropdown(!showCategoriesDropdown);
-  };
-
-  const handleSearchButtonClick = () => {
-    setShowSearchField(!showSearchField);
   };
 
   useEffect(() => {
@@ -22,30 +25,36 @@ const Header = () => {
       setIsMobile(window.innerWidth <= 768);
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
   useEffect(() => {
     const handleDocumentClick = (event) => {
-      if (navigationRef.current && !navigationRef.current.contains(event.target)) {
+      if (
+        navigationRef.current &&
+        !navigationRef.current.contains(event.target)
+      ) {
         setIsMenuOpen(false);
       }
 
-      if (categoriesDropdownRef.current && !categoriesDropdownRef.current.contains(event.target)) {
+      if (
+        categoriesDropdownRef.current &&
+        !categoriesDropdownRef.current.contains(event.target)
+      ) {
         setShowCategoriesDropdown(false);
       }
     };
 
     if (isMobile && isMenuOpen) {
-      document.addEventListener('click', handleDocumentClick);
+      document.addEventListener("click", handleDocumentClick);
     }
 
     return () => {
-      document.removeEventListener('click', handleDocumentClick);
+      document.removeEventListener("click", handleDocumentClick);
     };
   }, [isMobile, isMenuOpen]);
 
@@ -54,18 +63,25 @@ const Header = () => {
   };
 
   return (
-    <header className={`sticky top-0 z-50 bg-gray-900 text-white py-4 ${isMobile ? 'md:hidden' : 'hidden md:flex'}`}>
+    <header
+      className={`sticky top-0 z-50 bg-gray-900 text-white py-4 ${
+        isMobile ? "md:hidden" : "hidden md:flex"
+      }`}
+    >
       <div className="container mx-auto px-4 flex items-center">
         {/* Hamburger button for mobile */}
         {isMobile ? (
-          <div className="hamburger p-2 h-8 w-8 flex items-center justify-center rounded-md text-white bg-gray-800" onClick={toggleMobileMenu}>
-            {isMenuOpen ? <MdClose size={24} /> : <MdMenu size={24} />}
+          <div
+            className="hamburger p-3 h-10 w-10 flex items-center justify-center rounded-md text-white bg-gray-800"
+            onClick={toggleMobileMenu}
+          >
+            {isMenuOpen ? <MdClose size={32} /> : <MdMenu size={32} />}
           </div>
         ) : null}
         {/* Logo section (hide when mobile navigation is open) */}
         {!isMobile || !isMenuOpen ? (
           <div className="logo">
-            <a href="#" className="text-2xl font-bold ml-10">
+            <a href="#" className="text-3xl font-bold ml-10">
               Watch Store
             </a>
           </div>
@@ -73,21 +89,19 @@ const Header = () => {
 
         {/* Mobile navigation menu for smaller screens. Initially hidden, shown below the header when the hamburger is clicked. */}
         {isMobile && isMenuOpen && (
-          <nav className="mobile-nav" ref={navigationRef}>
+          <nav className="mobile-nav items-center" ref={navigationRef}>
             {/* Navigation links for mobile devices. Initially hidden, shown when hamburger is clicked. */}
-            <ul className="nav-links">
-              <li>
-                <a href="#" className="block py-2 px-4 hover:bg-gray-700">
-                  <MdHome /> Home
-                </a>
+            <ul className="nav-links flex flex-col items-center text-center">
+              <li className="mb-4">
+                <MdHome size={32} className="m-auto" />
+                <a href="/">Home</a>
               </li>
-              {/* Categories dropdown for mobile */}
               <li className="relative" ref={categoriesDropdownRef}>
                 <button
-                  className="block py-2 px-4 hover:bg-gray-700"
+                  className="block  hover:bg-gray-700"
                   onClick={handleCategoriesDropdownClick}
                 >
-                  <MdCategory /> Categories
+                  <MdCategory size={32} className="m-auto" /> Categories
                 </button>
                 {showCategoriesDropdown && (
                   <ul className="absolute left-0 bg-gray-900 text-white py-2 px-4 rounded-md mt-2">
@@ -107,11 +121,9 @@ const Header = () => {
               </li>
 
               <li>
-               <Link href="/Account" >   <a className="block py-2 px-4 hover:bg-gray-700">
-                  <MdPerson /> Account
-                </a></Link>
-             
-               
+                <a className="block py-3 px-6 hover:bg-gray-700">
+                  <MdPerson size={32} className="m-auto" /> Account
+                </a>
               </li>
             </ul>
           </nav>
@@ -124,16 +136,16 @@ const Header = () => {
             <ul className="nav-links flex">
               <li>
                 <a href="#" className="block py-2 px-4 hover:bg-gray-700">
-                  <MdHome /> Home
+                  <MdHome size={32} className="m-auto" /> Home
                 </a>
               </li>
               {/* Categories dropdown for desktop */}
               <li className="relative" ref={categoriesDropdownRef}>
                 <button
-                  className="block py-2 px-4 hover:bg-gray-700"
+                  className="block py-2 px-6 hover:bg-gray-700"
                   onClick={handleCategoriesDropdownClick}
                 >
-                  <MdCategory /> Categories
+                  <MdCategory size={32} className="m-auto" /> Categories
                 </button>
                 {showCategoriesDropdown && (
                   <ul className="absolute left-0 bg-gray-900 text-white py-2 px-4 rounded-md mt-2">
@@ -153,8 +165,9 @@ const Header = () => {
               </li>
 
               <li>
-              <Link href="/Account" className="block py-2 px-4 hover:bg-gray-700"><MdPerson /> Account</Link>
-              
+                <a href="" className="block py-2 px-4 hover:bg-gray-700">
+                  <MdPerson size={32} className="m-auto" /> Account
+                </a>
               </li>
             </ul>
           </nav>
