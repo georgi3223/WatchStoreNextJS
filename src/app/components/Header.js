@@ -122,10 +122,11 @@ const Header = () => {
               </li>
 
               <li>
-               
-                <a className="block py-3 px-6 hover:bg-gray-700">
+              <Link href="/account">
+                <div className="block py-2 px-4 hover:bg-gray-700">
                   <MdPerson size={32} className="m-auto" /> Account
-                </a>
+                </div>
+              </Link>
               </li>
             </ul>
           </nav>
@@ -168,10 +169,10 @@ const Header = () => {
 
               <li>
               <Link href="/account">
-  <div className="block py-2 px-4 hover:bg-gray-700">
-    <MdPerson size={32} className="m-auto" /> Account
-  </div>
-</Link>
+                <div className="block py-2 px-4 hover:bg-gray-700">
+                  <MdPerson size={32} className="m-auto" /> Account
+                </div>
+              </Link>
               </li>
             </ul>
           </nav>
