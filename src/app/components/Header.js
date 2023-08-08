@@ -7,8 +7,9 @@ import {
   MdCategory,
   MdSearch,
   MdPerson,
-} from "react-icons/md";
-import Link from "next/link";
+} from 'react-icons/md';
+
+import Link from 'next/link';
 
 const Header = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -92,10 +93,10 @@ const Header = () => {
           <nav className="mobile-nav items-center" ref={navigationRef}>
             {/* Navigation links for mobile devices. Initially hidden, shown when hamburger is clicked. */}
             <ul className="nav-links flex flex-col items-center text-center">
-              <li className="mb-4">
-                <MdHome size={32} className="m-auto" />
-                <a href="/">Home</a>
-              </li>
+            <li className="mb-4">
+        <MdHome size={32} className="m-auto" />
+        <Link href="/">Home</Link>
+      </li>
               <li className="relative" ref={categoriesDropdownRef}>
                 <button
                   className="block  hover:bg-gray-700"
@@ -121,6 +122,7 @@ const Header = () => {
               </li>
 
               <li>
+               
                 <a className="block py-3 px-6 hover:bg-gray-700">
                   <MdPerson size={32} className="m-auto" /> Account
                 </a>
@@ -165,14 +167,17 @@ const Header = () => {
               </li>
 
               <li>
-                <a href="" className="block py-2 px-4 hover:bg-gray-700">
-                  <MdPerson size={32} className="m-auto" /> Account
-                </a>
+              <Link href="/account">
+  <div className="block py-2 px-4 hover:bg-gray-700">
+    <MdPerson size={32} className="m-auto" /> Account
+  </div>
+</Link>
               </li>
             </ul>
           </nav>
         )}
       </div>
+      
     </header>
   );
 };

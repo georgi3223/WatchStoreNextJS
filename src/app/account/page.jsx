@@ -42,7 +42,7 @@ const Account = () => {
   };
 
   return (
-    <div className="container mx-auto py-8">
+<div className="flex items-center justify-center h-screen">
       <div className="max-w-md mx-auto bg-white p-8 shadow-md rounded-lg">
         <h2 className="text-2xl font-semibold mb-6">Login</h2>
         <form onSubmit={handleLogin} className="space-y-4">
@@ -81,7 +81,7 @@ const Account = () => {
           <p className="text-red-500 mt-2">Invalid email or password</p>
         )}
         <p className="mt-4 text-center">
-          Don't have an account?{" "}
+          Don't have an account?{' '}
           <button
             onClick={handleRegister}
             className="text-blue-500 hover:underline focus:outline-none"
